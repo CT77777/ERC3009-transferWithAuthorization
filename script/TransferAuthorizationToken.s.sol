@@ -13,11 +13,7 @@ contract DeployTransferAuthorizationToken is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
-        TransferAuthorizationToken token = new TransferAuthorizationToken(
-            "TransferAuthorizationToken",
-            "TAT",
-            "1"
-        );
+        TransferAuthorizationToken token = new TransferAuthorizationToken("TransferAuthorizationToken", "TAT", "1");
 
         vm.stopBroadcast();
 

@@ -86,8 +86,8 @@ export const TransferForm: React.FC<TransferFormProps> = ({
 
   return (
     <div className="card transfer-form-card">
-      <h2 className="card-title" style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '8px' }}>Transfer Authorization</h2>
-      <p className="card-subtitle" style={{ color: '#64748b', marginBottom: '24px' }}>
+      <h2 className="card-title">Transfer Authorization</h2>
+      <p className="card-subtitle">
         Sign an EIP-712 authorization to allow someone to transfer tokens on your behalf
       </p>
 
@@ -135,7 +135,7 @@ export const TransferForm: React.FC<TransferFormProps> = ({
 
         {error && <div className="error-message">{error}</div>}
 
-        <button type="submit" disabled={isLoading || !signer} className="btn btn-primary" style={{ width: '100%', marginTop: '16px' }}>
+        <button type="submit" disabled={isLoading || !signer} className="btn btn-primary full-width">
           {isLoading ? (
             <>
               <span className="spinner"></span> Signing...

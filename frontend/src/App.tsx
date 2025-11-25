@@ -140,7 +140,7 @@ function App() {
 
               {isLoadingTokenInfo && (
                 <div className="loading-text">
-                  <span className="spinner" style={{ borderColor: '#3b82f6', borderTopColor: 'transparent' }}></span>
+                  <span className="spinner"></span>
                   Loading token information...
                 </div>
               )}

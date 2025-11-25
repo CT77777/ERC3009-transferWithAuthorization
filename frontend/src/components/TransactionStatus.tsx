@@ -100,41 +100,41 @@ export const TransactionStatus: React.FC<TransactionStatusProps> = ({
 
   return (
     <div className="card transaction-status-card">
-      <div className="wallet-header" style={{ marginBottom: '16px', paddingBottom: '0', borderBottom: 'none' }}>
-        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', margin: 0 }}>Signed Authorization</h3>
-        <button onClick={onClear} className="btn btn-secondary" style={{ padding: '4px 12px', fontSize: '1.2rem' }}>×</button>
+      <div className="wallet-header">
+        <h3 className="card-title">Signed Authorization</h3>
+        <button onClick={onClear} className="btn btn-secondary close-btn">×</button>
       </div>
 
-      <div className="token-info-grid" style={{ marginBottom: '24px' }}>
+      <div className="token-info-grid">
         <div className="token-item">
           <span className="token-label">From</span>
-          <span className="token-value" style={{ fontSize: '0.9rem' }}>{formatAddress(pendingAuthorization.message.from)}</span>
+          <span className="token-value small-text">{formatAddress(pendingAuthorization.message.from)}</span>
         </div>
         <div className="token-item">
           <span className="token-label">To</span>
-          <span className="token-value" style={{ fontSize: '0.9rem' }}>{formatAddress(pendingAuthorization.message.to)}</span>
+          <span className="token-value small-text">{formatAddress(pendingAuthorization.message.to)}</span>
         </div>
         <div className="token-item">
           <span className="token-label">Amount</span>
-          <span className="token-value" style={{ fontSize: '0.9rem' }}>{formatValue(pendingAuthorization.message.value)}</span>
+          <span className="token-value small-text">{formatValue(pendingAuthorization.message.value)}</span>
         </div>
         <div className="token-item">
           <span className="token-label">Valid After</span>
-          <span className="token-value" style={{ fontSize: '0.9rem' }}>{formatTimestamp(pendingAuthorization.message.validAfter)}</span>
+          <span className="token-value small-text">{formatTimestamp(pendingAuthorization.message.validAfter)}</span>
         </div>
         <div className="token-item">
           <span className="token-label">Valid Before</span>
-          <span className="token-value" style={{ fontSize: '0.9rem' }}>{formatTimestamp(pendingAuthorization.message.validBefore)}</span>
+          <span className="token-value small-text">{formatTimestamp(pendingAuthorization.message.validBefore)}</span>
         </div>
         <div className="token-item">
           <span className="token-label">Nonce</span>
-          <span className="token-value" style={{ fontSize: '0.9rem' }}>{pendingAuthorization.message.nonce.slice(0, 10)}...</span>
+          <span className="token-value small-text">{pendingAuthorization.message.nonce.slice(0, 10)}...</span>
         </div>
       </div>
 
-      <div style={{ backgroundColor: '#f8fafc', padding: '16px', borderRadius: '8px', marginBottom: '24px' }}>
-        <h4 style={{ fontSize: '0.875rem', fontWeight: '600', margin: '0 0 8px 0', color: '#64748b' }}>Signature Components</h4>
-        <div style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#64748b', lineHeight: '1.6' }}>
+      <div className="signature-section">
+        <h4 className="signature-title">Signature Components</h4>
+        <div className="signature-data">
           <div><strong>v:</strong> {pendingAuthorization.signature.v}</div>
           <div><strong>r:</strong> {pendingAuthorization.signature.r.slice(0, 20)}...</div>
           <div><strong>s:</strong> {pendingAuthorization.signature.s.slice(0, 20)}...</div>
@@ -145,19 +145,18 @@ export const TransactionStatus: React.FC<TransactionStatusProps> = ({
         <button
           onClick={handleExecuteTransfer}
           disabled={isSubmitting}
-          className="btn btn-primary"
-          style={{ width: '100%', backgroundColor: '#22c55e' }}
+          className="btn btn-primary full-width"
         >
           Execute Transfer
         </button>
       )}
 
       {status === 'pending' && (
-        <div style={{ padding: '16px', backgroundColor: '#fff7ed', borderRadius: '6px', textAlign: 'center', color: '#c2410c' }}>
-          <span className="spinner" style={{ borderColor: '#c2410c', borderTopColor: 'transparent' }}></span>
+        <div className="status-message status-pending">
+          <span className="spinner"></span>
           <span>Transaction pending...</span>
           {txHash && (
-            <div style={{ marginTop: '8px', fontSize: '0.75rem', fontFamily: 'monospace' }}>
+            <div className="tx-hash">
               Tx: {formatAddress(txHash)}
             </div>
           )}
@@ -165,10 +164,10 @@ export const TransactionStatus: React.FC<TransactionStatusProps> = ({
       )}
 
       {status === 'success' && (
-        <div style={{ padding: '16px', backgroundColor: '#dcfce7', borderRadius: '6px', textAlign: 'center', color: '#15803d' }}>
+        <div className="status-message status-success">
           ✓ Transfer executed successfully!
           {txHash && (
-            <div style={{ marginTop: '8px', fontSize: '0.75rem', fontFamily: 'monospace' }}>
+            <div className="tx-hash">
               Tx: {formatAddress(txHash)}
             </div>
           )}
@@ -176,7 +175,7 @@ export const TransactionStatus: React.FC<TransactionStatusProps> = ({
       )}
 
       {status === 'error' && (
-        <div className="error-message" style={{ textAlign: 'center', padding: '16px', backgroundColor: '#fee2e2', borderRadius: '6px' }}>
+        <div className="error-message">
           ✗ {error}
         </div>
       )}

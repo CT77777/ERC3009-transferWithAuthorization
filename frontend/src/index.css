@@ -1,17 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Colors */
-  --primary-color: #3b82f6;
-  --primary-hover: #2563eb;
-  --secondary-color: #64748b;
-  --background-color: #f8fafc;
-  --card-bg: #ffffff;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --error-color: #ef4444;
-  --success-color: #22c55e;
-  --border-color: #e2e8f0;
+  /* Colors - Bright & Colorful Palette */
+  --primary-color: #FF6B6B;
+  /* Pastel Red/Pink */
+  --primary-hover: #FF8787;
+  --secondary-color: #4ECDC4;
+  /* Turquoise */
+  --accent-color: #FFE66D;
+  /* Yellow */
+  --background-color: #F7FFF7;
+  /* Mint Cream */
+  --card-bg: #FFFFFF;
+  --text-primary: #292F36;
+  /* Dark Blue-Gray */
+  --text-secondary: #8492A6;
+  --error-color: #FF6B6B;
+  --success-color: #4ECDC4;
+  --border-color: #FFE66D;
 
   /* Spacing */
   --spacing-xs: 4px;
@@ -20,27 +26,31 @@
   --spacing-lg: 24px;
   --spacing-xl: 32px;
 
-  /* Border Radius */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  /* Border Radius - Rounded and friendly */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  /* Shadows - Soft and colorful */
+  --shadow-sm: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  --shadow-color: 4px 4px 0px 0px #FFE66D;
+  /* Pop shadow */
 }
 
 body {
   margin: 0;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color);
   color: var(--text-primary);
-  line-height: 1.5;
+  line-height: 1.6;
+  background-image: radial-gradient(#4ECDC4 0.5px, transparent 0.5px), radial-gradient(#4ECDC4 0.5px, var(--background-color) 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
 }
 
 code {

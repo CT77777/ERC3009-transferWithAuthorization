@@ -84,11 +84,11 @@ export const TransactionStatus: React.FC<TransactionStatusProps> = ({
     // Simple formatting - divide by 10^18 for standard ERC20
     const valueStr = value.toString();
     const decimals = 18;
-    
+
     if (valueStr.length <= decimals) {
       return `0.${valueStr.padStart(decimals, '0')}`.replace(/\.?0+$/, '');
     }
-    
+
     const intPart = valueStr.slice(0, -decimals);
     const decPart = valueStr.slice(-decimals);
     return `${intPart}.${decPart.slice(0, 6)}`.replace(/\.?0+$/, '');
@@ -99,42 +99,42 @@ export const TransactionStatus: React.FC<TransactionStatusProps> = ({
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.header}>
-        <h3 style={styles.title}>Signed Authorization</h3>
-        <button onClick={onClear} style={styles.clearButton}>×</button>
+    <div className="card transaction-status-card">
+      <div className="wallet-header" style={{ marginBottom: '16px', paddingBottom: '0', borderBottom: 'none' }}>
+        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', margin: 0 }}>Signed Authorization</h3>
+        <button onClick={onClear} className="btn btn-secondary" style={{ padding: '4px 12px', fontSize: '1.2rem' }}>×</button>
       </div>
 
-      <div style={styles.details}>
-        <div style={styles.detailRow}>
-          <span style={styles.label}>From:</span>
-          <span style={styles.value}>{formatAddress(pendingAuthorization.message.from)}</span>
+      <div className="token-info-grid" style={{ marginBottom: '24px' }}>
+        <div className="token-item">
+          <span className="token-label">From</span>
+          <span className="token-value" style={{ fontSize: '0.9rem' }}>{formatAddress(pendingAuthorization.message.from)}</span>
         </div>
-        <div style={styles.detailRow}>
-          <span style={styles.label}>To:</span>
-          <span style={styles.value}>{formatAddress(pendingAuthorization.message.to)}</span>
+        <div className="token-item">
+          <span className="token-label">To</span>
+          <span className="token-value" style={{ fontSize: '0.9rem' }}>{formatAddress(pendingAuthorization.message.to)}</span>
         </div>
-        <div style={styles.detailRow}>
-          <span style={styles.label}>Amount:</span>
-          <span style={styles.value}>{formatValue(pendingAuthorization.message.value)}</span>
+        <div className="token-item">
+          <span className="token-label">Amount</span>
+          <span className="token-value" style={{ fontSize: '0.9rem' }}>{formatValue(pendingAuthorization.message.value)}</span>
         </div>
-        <div style={styles.detailRow}>
-          <span style={styles.label}>Valid After:</span>
-          <span style={styles.value}>{formatTimestamp(pendingAuthorization.message.validAfter)}</span>
+        <div className="token-item">
+          <span className="token-label">Valid After</span>
+          <span className="token-value" style={{ fontSize: '0.9rem' }}>{formatTimestamp(pendingAuthorization.message.validAfter)}</span>
         </div>
-        <div style={styles.detailRow}>
-          <span style={styles.label}>Valid Before:</span>
-          <span style={styles.value}>{formatTimestamp(pendingAuthorization.message.validBefore)}</span>
+        <div className="token-item">
+          <span className="token-label">Valid Before</span>
+          <span className="token-value" style={{ fontSize: '0.9rem' }}>{formatTimestamp(pendingAuthorization.message.validBefore)}</span>
         </div>
-        <div style={styles.detailRow}>
-          <span style={styles.label}>Nonce:</span>
-          <span style={styles.value}>{pendingAuthorization.message.nonce.slice(0, 10)}...</span>
+        <div className="token-item">
+          <span className="token-label">Nonce</span>
+          <span className="token-value" style={{ fontSize: '0.9rem' }}>{pendingAuthorization.message.nonce.slice(0, 10)}...</span>
         </div>
       </div>
 
-      <div style={styles.signature}>
-        <h4 style={styles.signatureTitle}>Signature Components</h4>
-        <div style={styles.signatureData}>
+      <div style={{ backgroundColor: '#f8fafc', padding: '16px', borderRadius: '8px', marginBottom: '24px' }}>
+        <h4 style={{ fontSize: '0.875rem', fontWeight: '600', margin: '0 0 8px 0', color: '#64748b' }}>Signature Components</h4>
+        <div style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#64748b', lineHeight: '1.6' }}>
           <div><strong>v:</strong> {pendingAuthorization.signature.v}</div>
           <div><strong>r:</strong> {pendingAuthorization.signature.r.slice(0, 20)}...</div>
           <div><strong>s:</strong> {pendingAuthorization.signature.s.slice(0, 20)}...</div>
@@ -145,18 +145,19 @@ export const TransactionStatus: React.FC<TransactionStatusProps> = ({
         <button
           onClick={handleExecuteTransfer}
           disabled={isSubmitting}
-          style={styles.executeButton}
+          className="btn btn-primary"
+          style={{ width: '100%', backgroundColor: '#22c55e' }}
         >
           Execute Transfer
         </button>
       )}
 
       {status === 'pending' && (
-        <div style={styles.statusPending}>
-          <div style={styles.spinner}></div>
+        <div style={{ padding: '16px', backgroundColor: '#fff7ed', borderRadius: '6px', textAlign: 'center', color: '#c2410c' }}>
+          <span className="spinner" style={{ borderColor: '#c2410c', borderTopColor: 'transparent' }}></span>
           <span>Transaction pending...</span>
           {txHash && (
-            <div style={styles.txHash}>
+            <div style={{ marginTop: '8px', fontSize: '0.75rem', fontFamily: 'monospace' }}>
               Tx: {formatAddress(txHash)}
             </div>
           )}
@@ -164,10 +165,10 @@ export const TransactionStatus: React.FC<TransactionStatusProps> = ({
       )}
 
       {status === 'success' && (
-        <div style={styles.statusSuccess}>
+        <div style={{ padding: '16px', backgroundColor: '#dcfce7', borderRadius: '6px', textAlign: 'center', color: '#15803d' }}>
           ✓ Transfer executed successfully!
           {txHash && (
-            <div style={styles.txHash}>
+            <div style={{ marginTop: '8px', fontSize: '0.75rem', fontFamily: 'monospace' }}>
               Tx: {formatAddress(txHash)}
             </div>
           )}
@@ -175,128 +176,10 @@ export const TransactionStatus: React.FC<TransactionStatusProps> = ({
       )}
 
       {status === 'error' && (
-        <div style={styles.statusError}>
+        <div className="error-message" style={{ textAlign: 'center', padding: '16px', backgroundColor: '#fee2e2', borderRadius: '6px' }}>
           ✗ {error}
         </div>
       )}
     </div>
   );
-};
-
-const styles = {
-  container: {
-    backgroundColor: '#fff',
-    borderRadius: '8px',
-    padding: '24px',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    maxWidth: '500px',
-    margin: '20px auto',
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '16px',
-  },
-  title: {
-    fontSize: '20px',
-    fontWeight: 'bold',
-    margin: 0,
-    color: '#333',
-  },
-  clearButton: {
-    background: 'none',
-    border: 'none',
-    fontSize: '24px',
-    cursor: 'pointer',
-    color: '#999',
-    padding: '0',
-    width: '30px',
-    height: '30px',
-  },
-  details: {
-    backgroundColor: '#f8f9fa',
-    borderRadius: '6px',
-    padding: '16px',
-    marginBottom: '16px',
-  },
-  detailRow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: '8px',
-    fontSize: '14px',
-  },
-  label: {
-    fontWeight: '500',
-    color: '#666',
-  },
-  value: {
-    color: '#333',
-    fontFamily: 'monospace',
-  },
-  signature: {
-    backgroundColor: '#f8f9fa',
-    borderRadius: '6px',
-    padding: '16px',
-    marginBottom: '16px',
-  },
-  signatureTitle: {
-    fontSize: '14px',
-    fontWeight: '600',
-    margin: '0 0 8px 0',
-    color: '#333',
-  },
-  signatureData: {
-    fontSize: '12px',
-    fontFamily: 'monospace',
-    color: '#666',
-    lineHeight: '1.6',
-  },
-  executeButton: {
-    width: '100%',
-    padding: '14px',
-    fontSize: '16px',
-    fontWeight: '600',
-    backgroundColor: '#28a745',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '6px',
-    cursor: 'pointer',
-  },
-  statusPending: {
-    padding: '16px',
-    backgroundColor: '#fff3cd',
-    borderRadius: '6px',
-    textAlign: 'center' as const,
-    color: '#856404',
-  },
-  statusSuccess: {
-    padding: '16px',
-    backgroundColor: '#d4edda',
-    borderRadius: '6px',
-    textAlign: 'center' as const,
-    color: '#155724',
-  },
-  statusError: {
-    padding: '16px',
-    backgroundColor: '#f8d7da',
-    borderRadius: '6px',
-    textAlign: 'center' as const,
-    color: '#721c24',
-  },
-  spinner: {
-    display: 'inline-block',
-    width: '16px',
-    height: '16px',
-    border: '2px solid #856404',
-    borderTopColor: 'transparent',
-    borderRadius: '50%',
-    animation: 'spin 0.8s linear infinite',
-    marginRight: '8px',
-  },
-  txHash: {
-    marginTop: '8px',
-    fontSize: '12px',
-    fontFamily: 'monospace',
-  },
 };

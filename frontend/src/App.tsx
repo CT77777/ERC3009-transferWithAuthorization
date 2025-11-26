@@ -7,8 +7,8 @@ import { ContractService } from './services/contractService';
 import { TransferAuthorizationMessage, SignatureComponents } from './services/eip712Service';
 
 // Configure your contract address here
-const CONTRACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // Update with your deployed contract
-const TARGET_CHAIN_ID = 31337; // Anvil local testnet
+const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS || '0x3600000000000000000000000000000000000000'; // USDC
+const TARGET_CHAIN_ID = parseInt(process.env.REACT_APP_TARGET_CHAIN_ID || '5042002'); // Arc testnet
 
 interface PendingAuthorization {
   message: TransferAuthorizationMessage;

@@ -6,7 +6,7 @@ import "../src/TransferAuthorizationToken.sol";
 
 contract DeployTransferAuthorizationToken is Script {
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KE");
+        uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
         address deployer = vm.addr(deployerPrivateKey);
 
         console.log("Deployer address:", deployer);
